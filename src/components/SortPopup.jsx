@@ -35,6 +35,7 @@ console.log(sortRef)
     <div ref={sortRef} className="sort">
     <div className="sort__label">
       <svg
+      className={visiblePopup ? 'rotated' : ''}
         width="10"
         height="6"
         viewBox="0 0 10 6"
