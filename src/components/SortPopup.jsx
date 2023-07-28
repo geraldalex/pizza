@@ -24,7 +24,7 @@ const sortRef = useRef(null)
 
     useEffect(() => {
 document.body.addEventListener('click', handleOutsideClick )
-console.log(sortRef)
+
     }, [])
 
     const toogleVisiblePopup = () => {
