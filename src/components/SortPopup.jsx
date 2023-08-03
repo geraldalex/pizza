@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
       const [visiblePopup, setVisiblePopup] = useState(false);
   
-      const  [activeItem, setActiveItem] =   useState(0)
+     // const  [activeItem, setActiveItem] =   useState(0)
   
   const onSelectItem = (index) => {
     setActiveItem(index)
