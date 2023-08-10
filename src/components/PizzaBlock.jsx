@@ -4,7 +4,7 @@ import classNames from 'classnames'
 function PizzaBlock({name, imageUrl, price, types, sizes}) {
 
 
-  const avaibleTypes = ["тонкое", "традиционное"]
+  const avaibleTypes = ["thin", "traditional"]
   const avaibleSizes = [26, 30, 40]
   const [activeType, setActiveType] = useState(types[0])
   const [activeSize, setActiveSize] = useState(sizes[0])
@@ -40,7 +40,7 @@ setActiveType(index)
         <li key={size} onClick={() => onSelectSize(index)} className={ classNames({
           active: activeSize === index ,
           disabled: !sizes.includes(size)
-        })}>{size} см.</li>
+        })}>{size} cm.</li>
       ))}
       </ul>
     </div>
@@ -59,7 +59,7 @@ setActiveType(index)
             fill="white"
           />
         </svg>
-        <span>Добавить</span>
+        <span>Add</span>
         <i>2</i>
       </div>
     </div>

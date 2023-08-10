@@ -7,7 +7,7 @@ const Categories = React.memo(
       return (
         <div className="categories">
         <ul>
-          <li className={activeCategory === null ? 'active' : ''} onClick={() => {onClickCatagory(null)}} >Все</li>
+          <li className={activeCategory === null ? 'active' : ''} onClick={() => {onClickCatagory(null)}} >All</li>
      
           {items &&
           items.map((item, index) => <li onClick={() => {onClickCatagory(index)}} className={activeCategory === index ? 'active' : ''} key={`${item}_${index}`}>{item}</li>)}

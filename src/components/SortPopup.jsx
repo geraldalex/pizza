@@ -1,18 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react'
 
   const SortPopup = React.memo(
-    function SortPopup({items}) {
+    function SortPopup({items,activeSortType, onClickSortType}) {
 
       const [visiblePopup, setVisiblePopup] = useState(false);
   
      // const  [activeItem, setActiveItem] =   useState(0)
   
   const onSelectItem = (index) => {
-    setActiveItem(index)
+    onClickSortType(index)
     setVisiblePopup(false)
   }
   
-  const activLabel = items[activeItem].name
+  const activLabel = items.find(obj => obj.type===activeSortType).name
+ 
   
   const sortRef = useRef(null)
   
@@ -31,7 +32,7 @@ import React, { useEffect, useRef, useState } from 'react'
       const toogleVisiblePopup = () => {
           setVisiblePopup(!visiblePopup)
       }
-  
+
     return (
       <div ref={sortRef} className="sort">
       <div className="sort__label">
@@ -48,14 +49,14 @@ import React, { useEffect, useRef, useState } from 'react'
             fill="#2C2C2C"
           />
         </svg>
-        <b>Сортировка по:</b>
+        <b>Sort by:</b>
         <span onClick={toogleVisiblePopup}>{activLabel}</span>
       </div>
       { visiblePopup &&
       <div className="sort__popup">
         <ul>
         {items &&
-        items.map((item, index) => <li onClick={() => {onSelectItem(index)}} className={activeItem === index ? 'active' : ''} key={`${item}_${index}`}>{item.name}</li>)}
+        items.map((obj, index) => <li onClick={() => {onSelectItem(obj)}} className={activeSortType === obj.type ? 'active' : ''} key={`${obj.type}_${index}`}>{obj.name}</li>)}
         </ul>
       </div>
   }
