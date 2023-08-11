@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
+import Button from "./Button"
 
-function PizzaBlock({name, imageUrl, price, types, sizes}) {
+function PizzaBlock({id, name, imageUrl, price, types, sizes, onClickAddPizza}) {
 
 
   const avaibleTypes = ["thin", "traditional"]
   const avaibleSizes = [26, 30, 40]
   const [activeType, setActiveType] = useState(types[0])
-  const [activeSize, setActiveSize] = useState(sizes[0])
+  const [activeSize, setActiveSize] = useState(0)
 
   const onSelectType = (index) => {
 setActiveType(index)
@@ -16,6 +17,19 @@ setActiveType(index)
   const onSelectSize = (index) => {
     setActiveSize(index)
       }
+
+      const onAddPizza = () => {
+const obj = {
+  id,
+  name,
+  imageUrl,
+  price,
+  size: avaibleSizes[activeSize],
+  type: avaibleTypes[activeType]
+}
+
+        onClickAddPizza(obj)
+          }
   
   return (
     <div className="pizza-block">
@@ -46,7 +60,7 @@ setActiveType(index)
     </div>
     <div className="pizza-block__bottom">
       <div className="pizza-block__price">от {price} $</div>
-      <div className="button button--outline button--add">
+      <Button className="button--add" outline onClick={onAddPizza}>
         <svg
           width="12"
           height="12"
@@ -61,7 +75,7 @@ setActiveType(index)
         </svg>
         <span>Add</span>
         <i>2</i>
-      </div>
+      </Button>
     </div>
   </div>
   )

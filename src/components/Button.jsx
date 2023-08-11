@@ -6,7 +6,7 @@ function Button({onClick, children, outline, className}) {
     <button
     className={classNames('button', className, {
         'button--outline': outline
-    })}
+    })} onClick={onClick}
     >
         {children}
     </button>
