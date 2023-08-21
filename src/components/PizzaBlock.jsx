@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import classNames from 'classnames'
 import Button from "./Button"
 
-function PizzaBlock({id, name, imageUrl, price, types, sizes, onClickAddPizza}) {
+function PizzaBlock({id, name, imageUrl, price, types, sizes, onClickAddPizza, addedCount}) {
 
 
   const avaibleTypes = ["thin", "traditional"]
@@ -74,7 +74,7 @@ const obj = {
           />
         </svg>
         <span>Add</span>
-        <i>2</i>
+       { addedCount && <i>{addedCount}</i> }
       </Button>
     </div>
   </div>
