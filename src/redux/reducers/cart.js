@@ -13,18 +13,21 @@ const initialState = {
 
     const currentPizzaItems = !state.items[action.payload.id]
     ? [action.payload] 
-    :  [...state.items[action.payload.id], action.payload]
+    :  [...state.items[action.payload.id].items, action.payload]
 
     const newItems = {
       ...state.items,
-      [action.payload.id]: currentPizzaItems,
+      [action.payload.id]:{ 
+       items : currentPizzaItems,
       totalPrice: getTotalPrice(currentPizzaItems)
+      }
     }
 
-    const allPizzas = [].concat(...Object.values(newItems))
-    console.log(allPizzas)
+    const items = Object.values(newItems).map(obj => obj.items)
+    const allPizzas = [].concat(...items)
     const totalPrice = getTotalPrice(allPizzas)
 
+    console.log(state)
 
       return {
         ...state, 
