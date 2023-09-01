@@ -38,8 +38,87 @@ const initialState = {
       
     }
   
+    case 'CLEAR_CART':
+  return {
+    items: {},
+    totalPrice: 0,
+    totalCount:0
+  }
+
+  case 'REMOVE_CART_ITEM':{
+
+    
+
+  const newItems = {
+    ...state.items
+  }
+  const currentTotalPrice = newItems[action.payload].totalPrice
+  const currentTotalCount = newItems[action.payload].items.length
+  delete newItems[action.payload]
+    return {
+   ...state,
+   items:newItems,
+   totalPrice: state.totalPrice - currentTotalPrice,
+   totalCount: state.totalCount - currentTotalCount
+
+    }
+  }
+
+
+  case 'PLUS_CART_ITEM': {
+
+
+
+const newItems = [
+  ...state.items[action.payload].items,
+  state.items[action.payload].items[0]
+]
+
+
+
 
   
+  return{
+    ...state,
+    items: {
+      ...state.items,
+      [action.payload]: {
+        items:newItems,
+        totalPrice: getTotalPrice(newItems)
+      }
+    },
+    totalPrice: state.totalPrice + state.items[action.payload].items[0].price,
+     totalCount: state.totalCount + 1
+
+  }
+  }
+  case 'MINUS_CART_ITEM': {
+
+
+
+   const oldItems = state.items[action.payload].items;
+    const newItems = oldItems.length > 1 ? state.items[action.payload].items.slice(1) : oldItems
+  
+
+    
+      
+      return{
+        ...state,
+        items: {
+          ...state.items,
+          [action.payload]: {
+            items:newItems,
+            totalPrice: getTotalPrice(newItems)
+          }
+        },
+
+        totalPrice: state.items[action.payload].items ? state.totalPrice - oldItems[0].price : state.totalPrice,
+        // totalCount: state.totalCount - 1
+
+      }
+  }
+
+
     default: 
     return state
   }
